@@ -20,4 +20,3 @@ function loadEditCustomersView(){
   return loadPartialHTML_("editcustomer");
 
 }
-
