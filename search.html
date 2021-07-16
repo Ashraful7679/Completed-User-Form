@@ -7,33 +7,11 @@
   <table class="table table-hover table-bordered">
   <thead>
     <tr>
-      <th id="editButton" scope="col">Edit</th>
-      <th scope="col">Delete</th>
       <th scope="col">ID</th>
-      <th scope="col">Job No</th>
-      <th scope="col">Date</th>
-      <th scope="col">Import Duty by ctg</th>
-      <th scope="col">Import Duty by office</th>
-      <th scope="col">PO Commission</th>
-      <th scope="col">Wharf rent/ Charges-1</th>
-      <th scope="col">Wharf rent/ Charges-2</th>
-      <th scope="col">NOC Charges</th>
-      <th scope="col">Shipping Agent-1</th>
-      <th scope="col">Shipping Agent-2</th>
-      <th scope="col">Shipping Agent-3</th>
-      <th scope="col">Servay Charges-1</th>
-      <th scope="col">Servay Charges-2</th>
-      <th scope="col">Container Seal</th>
-      <th scope="col">Automation charges</th>
-      <th scope="col">CnF Association Fees</th>
-      <th scope="col">Labour Expenses</th>       
-      <th scope="col">Stamp Record charges</th>
-      <th scope="col">Documentation Expenses</th>      
-      <th scope="col">Others Expenses</th>
-      <th scope="col">Entertainment:-1</th>
-      <th scope="col">Vat on CnF</th>
-      <th scope="col">IncomeTax on CnF</th>
-      
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody id="searchResults">
@@ -44,37 +22,14 @@
 
 <template id="rowTemplate">
     <tr class="result-box">
-      <td class="text-center"><button type="button" class="btn btn-outline-dark edit-button btn-sm" >Edit</button></td>
-      <td class="text-center">
+      <th class="custID" scope="row"></th>
+      <td class="firstName"></td>
+      <td class="lastName"></td>
+      <td> <button type="button" class="btn btn-outline-dark edit-button">Edit</button></td>
+      <td>
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-danger delete-button d-none btn-sm">Confirm</button>
-          <button type="button" class="btn btn-outline-dark before-delete-button btn-sm" data-button-state="delete">Delete</button>
-      <th class="custID" scope="row"></th>
-      <td class="addC1"></td>
-      <td class="addC2"></td>
-      <td class="addC3"></td>
-      <td class="addC4"></td>
-      <td class="addC5"></td>
-      <td class="addC6"></td>
-      <td class="addC7"></td>
-      <td class="addC8"></td>
-      <td class="addC9"></td>
-      <td class="addC10"></td>
-      <td class="addC11"></td>
-      <td class="addC12"></td>
-      <td class="addC13"></td>
-      <td class="addC14"></td>
-      <td class="addC15"></td>
-      <td class="addC16"></td>
-      <td class="addC17"></td>
-      <td class="addC18"></td>
-      <td class="addC19"></td>
-      <td class="addC20"></td>
-      <td class="addC21"></td>
-      <td class="addC22"></td>
-      <td class="addC23"></td>
-      <td class="addC24"></td>
-      
+          <button type="button" class="btn btn-outline-dark before-delete-button btn-sm" data-button-state="delete">Delete</button> 
         </div>
       </td>
       
