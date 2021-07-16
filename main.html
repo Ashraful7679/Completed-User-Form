@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-     <base target="_self">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,9 +11,7 @@
     .nav-link{
       cursor:pointer;      
     }
-    .form-control{
-      position:right;
-    }
+    
     #loading {
       position:fixed;
       top:0;
@@ -30,26 +27,25 @@
   </head>
   <body>
   <div class="container">
+     
     <nav id="navigation" class="mb-3">
-      <ul class="nav nav-tabs main-nav">        
+      <ul class="nav nav-tabs main-nav">  
+        <li class="nav-item">          
+         </li>
           <li class="nav-item">
             <div class="nav-link active" id="search-link">Find Customer</div>
           </li>
           <li class="nav-item">
             <div class="nav-link" id="add-customer-link">Add Customer</div>
           </li>
-         
-            <div class="input-group input-group-sm mb-6 input-field col s6">   
-            <input id="input0"  class="btn">
-         </div>  
+      
        </ul>
-         
+      
     </nav>
-    
-    
-          
-
-  <div id="app"></div>
+ 
+   <div id="app">    
+       
+   </div>
   <!-- Content here -->  
   </div>
   
@@ -63,419 +59,230 @@
   
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
- 
+  <script>
 
- <script>
-  
-     var initVal = <?=initialValue?>;
-     
-      document.getElementById("input0").value = initVal;
-       document.getElementById("app").addEventListener("input",money);
-        document.getElementById("app").addEventListener("click",money);  
-         document.getElementById("navigation").addEventListener("click",money);  
-       if(initVal <= 0){
-      document.getElementById("input0").classList.add("btn-danger");
-        }
-        else{
-        document.getElementById("input0").classList.add("btn-success");
-       
-   }
-           
-      function money(){
-     
-         google.script.run.withSuccessHandler(showValue).getNewValue();
-     
-         };
-  
-       
-         
-   function showValue(myValue){
-       
-        document.getElementById("input0").value = initVal;
-        document.getElementById("app").addEventListener("input",money);
-        document.getElementById("app").addEventListener("click",money);  
-        document.getElementById("navigation").addEventListener("click",money); 
-       
-       if(myValue <= 0){
-     document.getElementById("input0").classList.add("btn-danger");
-     document.getElementById("add-customer-button").disabled=true;
-     editButton
-        }
-        else{
-        document.getElementById("input0").classList.add("btn-success");
-     document.getElementById("add-customer-button").disabled=false;
-   }  
-         document.getElementById("input0").value = myValue;
-};
-
-  
- 
-  
-  var data;
-  
-  function loadView(options){
-   
-    var id = typeof options.id === "undefined" ? "app" : options.id;
-    var cb = typeof options.callback === "undefined" ? function(){} : options.callback;
-     loadingStart();
-    google.script.run.withSuccessHandler(function(html){
-        document.getElementById(id).innerHTML = html;
-     loadingEnd();
-        typeof options.params === "undefined" ? cb() : cb(options.params);
-    })[options.func]();
-  }
-  
-  
-
-         
-         
-         
-         
-         
-  
-  function setDataForSearch(){
-    loadingStart();
-    google.script.run.withSuccessHandler(function(dataReturned){
-       data = dataReturned.slice();
-    loadingEnd();
-    }).getDataForSearch();
-  }
-  
-  function loadSearchView(){
-    loadView({func: "loadSearchView", callback: setDataForSearch});
-  }
-  
-  function search(){
-    var searchInput = document.getElementById("searchInput").value.toString().toLowerCase().trim();
-    var searchWords = searchInput.split(/\s+/);
-    var searchColumns = [1,2];
-    // and or 
     
-    var resultsArray = searchInput === "" ? [] : data.filter(function(r){ 
-       return   searchWords.every(function(word){
-              return searchColumns.some(function(colIndex){
-                return  r[colIndex].toString().toLowerCase().indexOf(word) !== -1
-             });
-          });
-    });
-    var searchResultBox = document.getElementById("searchResults");
-    var templateBox = document.getElementById("rowTemplate");
-    var template = templateBox.content;
-    
-    searchResultBox.innerHTML="";
-    
-    resultsArray.forEach(function(r){
-    
-       var tr = template.cloneNode(true);
-       var custIDColumn = tr.querySelector(".custID");
-       var addC1 = tr.querySelector(".addC1");
-       var addC2 = tr.querySelector(".addC2");
-       var addC3 = tr.querySelector(".addC3");
-       var addC4 = tr.querySelector(".addC4");
-       var addC5 = tr.querySelector(".addC5");
-       var addC6 = tr.querySelector(".addC6");
-       var addC7 = tr.querySelector(".addC7");
-       var addC8 = tr.querySelector(".addC8");
-       var addC9 = tr.querySelector(".addC9");
-       var addC10 = tr.querySelector(".addC10");
-       var addC11 = tr.querySelector(".addC11");
-       var addC12 = tr.querySelector(".addC12");
-       var addC13 = tr.querySelector(".addC13");
-       var addC14 = tr.querySelector(".addC14");
-       var addC15 = tr.querySelector(".addC15");
-       var addC16 = tr.querySelector(".addC16");
-       var addC17 = tr.querySelector(".addC17");
-       var addC18 = tr.querySelector(".addC18");
-       var addC19 = tr.querySelector(".addC19");
-       var addC20 = tr.querySelector(".addC20");
-       var addC21 = tr.querySelector(".addC21");
-       var addC22 = tr.querySelector(".addC22");
-       var addC23 = tr.querySelector(".addC23");
-       var addC24 = tr.querySelector(".addC24");
-       var deleteButton = tr.querySelector(".delete-button");
-       var editButton = tr.querySelector(".edit-button");
-       
-       
-       custIDColumn.textContent = r[0];
-       deleteButton.dataset.customerId = r[0];
-       editButton.dataset.customerId = r[0];
-       addC1.textContent = r[1];
-       addC2.textContent = r[2];
-       addC3.textContent = r[3];
-       addC4.textContent = r[4];
-       addC5.textContent = r[5];
-       addC6.textContent = r[6];
-       addC7.textContent = r[7];
-       addC8.textContent = r[8];
-       addC9.textContent = r[9];
-       addC10.textContent = r[10];
-       addC11.textContent = r[11];
-       addC12.textContent = r[12];
-       addC13.textContent = r[13];
-       addC14.textContent = r[14];
-       addC15.textContent = r[15];
-       addC16.textContent = r[16];
-       addC17.textContent = r[17];
-       addC18.textContent = r[18];
-       addC19.textContent = r[19];
-       addC20.textContent = r[20];
-       addC21.textContent = r[21];
-       addC22.textContent = r[22];
-       addC23.textContent = r[23];
-       addC24.textContent = r[24];
+    var data;
       
-       searchResultBox.appendChild(tr);
+      function loadView(options){
        
-    });
-   }
-
-  function displayConfirmationDelete(e){
-    if(e.target.dataset.buttonState === "delete"){
-      e.target.previousElementSibling.classList.remove("d-none");
-      e.target.textContent ="Cancel";
-      e.target.dataset.buttonState = "cancel";
-     } else {
-     
-      e.target.previousElementSibling.classList.add("d-none");
-      e.target.textContent ="Delete";
-      e.target.dataset.buttonState = "delete";
-     
-     }
-   }
-
-  function deleteCustomer(e){
-    var custID = e.target.dataset.customerId;
-    loadingStart();
-    google.script.run.withSuccessHandler(function(){
-      e.target.closest(".result-box").remove();
-      var ids = data.map(function(r){ return r[0].toString().toLowerCase() });
-      var index = ids.indexOf(custID.toString().toLowerCase());
-      data.splice(index, 1);
-      loadingEnd();
-    }).deleteById(custID);
-  
-  }
-
-  function afterEditViewLoads(params){
-    //{custID: 32}  
-    loadingStart();
-    document.getElementById("customer-id").value = params.custID;
-    google.script.run.withSuccessHandler(function(customerInfo){
-    
-      document.getElementById("add-1").value = customerInfo.addC1;
-      document.getElementById("add-2").value = customerInfo.addC2;
-      document.getElementById("add-3").value = customerInfo.addC3;
-      document.getElementById("add-4").value = customerInfo.addC4;
-      document.getElementById("add-5").value = customerInfo.addC5;
-      document.getElementById("add-6").value = customerInfo.addC6;
-      document.getElementById("add-7").value = customerInfo.addC7;
-      document.getElementById("add-8").value = customerInfo.addC8;
-      document.getElementById("add-9").value = customerInfo.addC9;
-      document.getElementById("add-10").value = customerInfo.addC10;
-      document.getElementById("add-11").value = customerInfo.addC11;
-      document.getElementById("add-12").value = customerInfo.addC12;
-      document.getElementById("add-13").value = customerInfo.addC13;
-      document.getElementById("add-14").value = customerInfo.addC14;
-      document.getElementById("add-15").value = customerInfo.addC15;
-      document.getElementById("add-16").value = customerInfo.addC16;
-      document.getElementById("add-17").value = customerInfo.addC17;
-      document.getElementById("add-18").value = customerInfo.addC18;
-      document.getElementById("add-19").value = customerInfo.addC19;
-      document.getElementById("add-20").value = customerInfo.addC20;
-      document.getElementById("add-21").value = customerInfo.addC21;
-      document.getElementById("add-22").value = customerInfo.addC22;
-      document.getElementById("add-23").value = customerInfo.addC23;
-      document.getElementById("add-24").value = customerInfo.addC24;
+        var id = typeof options.id === "undefined" ? "app" : options.id;
+        var cb = typeof options.callback === "undefined" ? function(){} : options.callback;
+         loadingStart();
+        google.script.run.withSuccessHandler(function(html){
+            document.getElementById(id).innerHTML = html;
+         loadingEnd();
+            typeof options.params === "undefined" ? cb() : cb(options.params);
+        })[options.func]();
+      }
       
-loadingEnd();
-    }).getCustomerById(params.custID);
-  }
-
-  function editCustomer(){
-     loadingStart();
-    var customerInfo = {};
-    customerInfo.addC1 = document.getElementById("add-1").value;
-    customerInfo.addC2 = document.getElementById("add-2").value;
-    customerInfo.addC3 = document.getElementById("add-3").value;
-    customerInfo.addC4 = document.getElementById("add-4").value;
-    customerInfo.addC5 = document.getElementById("add-5").value;
-    customerInfo.addC6 = document.getElementById("add-6").value;
-    customerInfo.addC7 = document.getElementById("add-7").value;
-    customerInfo.addC8 = document.getElementById("add-8").value;
-    customerInfo.addC9 = document.getElementById("add-9").value;
-    customerInfo.addC10 = document.getElementById("add-10").value;
-    customerInfo.addC11 = document.getElementById("add-11").value;
-    customerInfo.addC12 = document.getElementById("add-12").value;
-    customerInfo.addC13 = document.getElementById("add-13").value;
-    customerInfo.addC14 = document.getElementById("add-14").value;
-    customerInfo.addC15 = document.getElementById("add-15").value;
-    customerInfo.addC16 = document.getElementById("add-16").value;
-    customerInfo.addC17 = document.getElementById("add-17").value;
-    customerInfo.addC18 = document.getElementById("add-18").value;
-    customerInfo.addC19 = document.getElementById("add-19").value;
-    customerInfo.addC20 = document.getElementById("add-20").value;
-    customerInfo.addC21 = document.getElementById("add-21").value;
-    customerInfo.addC22 = document.getElementById("add-22").value;
-    customerInfo.addC23 = document.getElementById("add-23").value;
-    customerInfo.addC24 = document.getElementById("add-24").value;
-    
-    var id = document.getElementById("customer-id").value;
-    
-    google.script.run.withSuccessHandler(function(res){
-      document.getElementById("save-success-message").classList.remove("invisible");
-      loadingEnd();
-      setTimeout(function(){
-        document.getElementById("save-success-message").classList.add("invisible");
-      },2000)
-     }).editCustomerById(id, customerInfo);  
-    }
-  
-  
-  function addCustomer(){
-     loadingStart();
-     var customerInfo = {};
-          customerInfo.addC1 = document.getElementById("add-1").value;
-          customerInfo.addC2 = document.getElementById("add-2").value;
-          customerInfo.addC3 = document.getElementById("add-3").value;
-          customerInfo.addC4 = document.getElementById("add-4").value;
-          customerInfo.addC5 = document.getElementById("add-5").value;
-          customerInfo.addC6 = document.getElementById("add-6").value;
-          customerInfo.addC7 = document.getElementById("add-7").value;
-          customerInfo.addC8 = document.getElementById("add-8").value;
-          customerInfo.addC9 = document.getElementById("add-9").value;
-          customerInfo.addC10 = document.getElementById("add-10").value;
-          customerInfo.addC11 = document.getElementById("add-11").value;
-          customerInfo.addC12 = document.getElementById("add-12").value;
-          customerInfo.addC13 = document.getElementById("add-13").value;
-          customerInfo.addC14 = document.getElementById("add-14").value;
-          customerInfo.addC15 = document.getElementById("add-15").value;
-          customerInfo.addC16 = document.getElementById("add-16").value;
-          customerInfo.addC17 = document.getElementById("add-17").value;
-          customerInfo.addC18 = document.getElementById("add-18").value;
-          customerInfo.addC19 = document.getElementById("add-19").value;
-          customerInfo.addC20 = document.getElementById("add-20").value;
-          customerInfo.addC21 = document.getElementById("add-21").value;
-          customerInfo.addC22 = document.getElementById("add-22").value;
-          customerInfo.addC23 = document.getElementById("add-23").value;
-          customerInfo.addC24 = document.getElementById("add-24").value;
-  
-  
-    google.script.run.withSuccessHandler(function(){
-        document.getElementById("add-1").value = "";
-        document.getElementById("add-2").value = "";
-        document.getElementById("add-3").value = "";
-        document.getElementById("add-4").value = "";
-        document.getElementById("add-5").value = "";
-        document.getElementById("add-6").value = "";
-        document.getElementById("add-7").value = "";
-        document.getElementById("add-8").value = "";
-        document.getElementById("add-9").value = "";
-        document.getElementById("add-10").value = "";
-        document.getElementById("add-11").value = "";
-        document.getElementById("add-12").value = "";
-        document.getElementById("add-13").value = "";
-        document.getElementById("add-14").value = "";
-        document.getElementById("add-15").value = "";
-        document.getElementById("add-16").value = "";
-        document.getElementById("add-17").value = "";
-        document.getElementById("add-18").value = "";
-        document.getElementById("add-19").value = "";
-        document.getElementById("add-20").value = "";
-        document.getElementById("add-21").value = "";
-        document.getElementById("add-22").value = "";
-        document.getElementById("add-23").value = "";
-        document.getElementById("add-24").value = "";
-        
-        
-        document.getElementById("save-success-message").classList.remove("invisible");
+      function setDataForSearch(){
+        loadingStart();
+        google.script.run.withSuccessHandler(function(dataReturned){
+           data = dataReturned.slice();
         loadingEnd();
-        setTimeout(function(){
-          document.getElementById("save-success-message").classList.add("invisible");
-          },2000)
+        }).getDataForSearch();
+      }
+      
+      function loadSearchView(){
+        loadView({func: "loadSearchView", callback: setDataForSearch});
+      }
+      
+      function search(){
+        var searchInput = document.getElementById("searchInput").value.toString().toLowerCase().trim();
+        var searchWords = searchInput.split(/\s+/);
+        var searchColumns = [1,2];
+        // and or 
+        
+        var resultsArray = searchInput === "" ? [] : data.filter(function(r){ 
+           return   searchWords.every(function(word){
+                  return searchColumns.some(function(colIndex){
+                    return  r[colIndex].toString().toLowerCase().indexOf(word) !== -1
+                 });
+              });
+        });
+        var searchResultBox = document.getElementById("searchResults");
+        var templateBox = document.getElementById("rowTemplate");
+        var template = templateBox.content;
+        
+        searchResultBox.innerHTML="";
+        
+        resultsArray.forEach(function(r){
+        
+           var tr = template.cloneNode(true);
+           var custIDColumn = tr.querySelector(".custID");
+           var firstNameColumn = tr.querySelector(".firstName");
+           var lastNameColumn = tr.querySelector(".lastName");
+           var deleteButton = tr.querySelector(".delete-button");
+           var editButton = tr.querySelector(".edit-button");
+           
+           
+           custIDColumn.textContent = r[0];
+           firstNameColumn.textContent = r[1];
+           lastNameColumn.textContent = r[2];
+           deleteButton.dataset.customerId = r[0];
+           editButton.dataset.customerId = r[0];
+           searchResultBox.appendChild(tr);
+           
+        });
+       }
     
-    }).addCustomer(customerInfo);
-  
-  
-  }
-  
-
-  function loadSearchView(){
-    loadView({func: "loadSearchView", callback: setDataForSearch });
-  }
-
-  function loadAddCustomerView(){
-    loadView({func: "loadAddCustomersView"});
-  }
-  function loadEditCustomerView(e){
-    loadView({func: "loadEditCustomersView", callback: afterEditViewLoads, params: {custID: e.target.dataset.customerId} });
-  }
-  
-
-  
-  function activeTabChange(e){
-  
-    var navLinks = document.querySelectorAll(".main-nav .nav-link");      
-    navLinks.forEach(function(linkEl){
-       linkEl.classList.remove("active");
-      });
-      e.target.classList.add("active");
-  }
-  
-  function loadingStart(){
-    document.getElementById("loading").classList.remove("invisible");
-  }
-  
-  function loadingEnd(){
-    document.getElementById("loading").classList.add("invisible");
-  }
-  
-  
-  document.getElementById("search-link").addEventListener("click",loadSearchView);
-  document.getElementById("add-customer-link").addEventListener("click",loadAddCustomerView);
-  document.getElementById("search-link").addEventListener("click",showValue);
-  document.getElementById("add-customer-link").addEventListener("click",showValue);
-  
-  function inputEventHandler(e){
-    if(e.target.matches("#searchInput")){
-      search();
-     }
-  }
-  
-  function clickEventHandler(e){
-    if(e.target.matches(".delete-button")){
-      deleteCustomer(e);
-     }
-    if(e.target.matches(".before-delete-button")){
-      displayConfirmationDelete(e);
-     }
-    if(e.target.matches(".edit-button")){
-      loadEditCustomerView(e);
-     }
-     if(e.target.matches("#save-changes")){
-      editCustomer();
-     }
-     if(e.target.matches("#cancel-changes")){
-      loadSearchView();
-     }
-     if(e.target.matches("#add-customer-button")){
-      addCustomer();
-     }
-     add-customer-button
-  }
-  
-  function navClickEventHandler(e){
-    if(e.target.matches(".nav-link")){
-        activeTabChange(e);
-     }  
-  }
-  document.getElementById("app").addEventListener("input",inputEventHandler);
-  document.getElementById("app").addEventListener("click",clickEventHandler);
-  document.getElementById("navigation").addEventListener("click",navClickEventHandler);  
-  document.addEventListener("DOMContentLoaded",loadSearchView);
-  
+      function displayConfirmationDelete(e){
+        if(e.target.dataset.buttonState === "delete"){
+          e.target.previousElementSibling.classList.remove("d-none");
+          e.target.textContent ="Cancel";
+          e.target.dataset.buttonState = "cancel";
+         } else {
+         
+          e.target.previousElementSibling.classList.add("d-none");
+          e.target.textContent ="Delete";
+          e.target.dataset.buttonState = "delete";
+         
+         }
+       }
+    
+      function deleteCustomer(e){
+        var custID = e.target.dataset.customerId;
+        loadingStart();
+        google.script.run.withSuccessHandler(function(){
+          e.target.closest(".result-box").remove();
+          var ids = data.map(function(r){ return r[0].toString().toLowerCase() });
+          var index = ids.indexOf(custID.toString().toLowerCase());
+          data.splice(index, 1);
+          loadingEnd();
+        }).deleteById(custID);
+      
+      }
+    
+      function afterEditViewLoads(params){
+        //{custID: 32}  
+        loadingStart();
+        document.getElementById("customer-id").value = params.custID;
+        google.script.run.withSuccessHandler(function(customerInfo){
+        
+          document.getElementById("first-name").value = customerInfo.firstName;
+          document.getElementById("last-name").value = customerInfo.lastName;
+          document.getElementById("phone-number").value = customerInfo.phone;
+          loadingEnd();
+        }).getCustomerById(params.custID);
+      }
+    
+      function editCustomer(){
+         loadingStart();
+        var customerInfo = {};
+        customerInfo.firstName = document.getElementById("first-name").value;
+        customerInfo.lastName = document.getElementById("last-name").value;
+        customerInfo.phone = document.getElementById("phone-number").value;
+        
+        var id = document.getElementById("customer-id").value;
+        
+        google.script.run.withSuccessHandler(function(res){
+          document.getElementById("save-success-message").classList.remove("invisible");
+          loadingEnd();
+          setTimeout(function(){
+            document.getElementById("save-success-message").classList.add("invisible");
+          },2000)
+         }).editCustomerById(id, customerInfo);  
+        }
+      
+      
+      function addCustomer(){
+         loadingStart();
+         var customerInfo = {};
+              customerInfo.firstName = document.getElementById("first-name").value;
+              customerInfo.lastName = document.getElementById("last-name").value;
+              customerInfo.phone = document.getElementById("phone-number").value;
+      
+      
+        google.script.run.withSuccessHandler(function(){
+            document.getElementById("first-name").value = "";
+            document.getElementById("last-name").value = "";
+            document.getElementById("phone-number").value = "";
+            
+            document.getElementById("save-success-message").classList.remove("invisible");
+            loadingEnd();
+            setTimeout(function(){
+              document.getElementById("save-success-message").classList.add("invisible");
+              },2000)        
+        }).addCustomer(customerInfo);
+       }
+      
+     
+    
+      function loadSearchView(){
+        loadView({func: "loadSearchView", callback: setDataForSearch });
+      }
+    
+      function loadAddCustomerView(){
+        loadView({func: "loadAddCustomersView"});
+      }
+      function loadEditCustomerView(e){
+        loadView({func: "loadEditCustomersView", callback: afterEditViewLoads, params: {custID: e.target.dataset.customerId} });
+      }
+      
+      function activeTabChange(e){
+      
+        var navLinks = document.querySelectorAll(".main-nav .nav-link");      
+        navLinks.forEach(function(linkEl){
+           linkEl.classList.remove("active");
+          });
+          e.target.classList.add("active");
+      }
+      
+      function loadingStart(){
+        document.getElementById("loading").classList.remove("invisible");
+      }
+      
+      function loadingEnd(){
+        document.getElementById("loading").classList.add("invisible");
+      }
+      
+      
+      document.getElementById("search-link").addEventListener("click",loadSearchView);
+      document.getElementById("add-customer-link").addEventListener("click",loadAddCustomerView);
+      
+      
+      function inputEventHandler(e){
+        if(e.target.matches("#searchInput")){
+          search();
+         }
+      }
+      
+      function clickEventHandler(e){
+        if(e.target.matches(".delete-button")){
+          deleteCustomer(e);
+         }
+        if(e.target.matches(".before-delete-button")){
+          displayConfirmationDelete(e);
+         }
+        if(e.target.matches(".edit-button")){
+          loadEditCustomerView(e);
+         }
+         if(e.target.matches("#save-changes")){
+          editCustomer();
+         }
+         if(e.target.matches("#cancel-changes")){
+          loadSearchView();
+         }
+         if(e.target.matches("#add-customer-buton")){
+          addCustomer();
+         }
+         add-customer-buton
+      }
+      
+      function navClickEventHandler(e){
+        if(e.target.matches(".nav-link")){
+            activeTabChange(e);
+         }  
+      }
+      document.getElementById("app").addEventListener("input",inputEventHandler);
+      document.getElementById("app").addEventListener("click",clickEventHandler);
+      document.getElementById("navigation").addEventListener("click",navClickEventHandler);  
+      document.addEventListener("DOMContentLoaded",loadSearchView);
   </script>
   
   </body>
